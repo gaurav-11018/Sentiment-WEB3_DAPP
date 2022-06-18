@@ -37,8 +37,9 @@ contract  MarketSentiment{
         require(Tickers[_ticker].exists, "Cant vote on this COin");
         require(!Tickers[_ticker].Voters[msg.sender], "You have already voted for this coin");
     
-    
-    
+        ticker storage t =Tickers[_ticker];
+        t.Voters[msg.sender]= true;
+
     }
 
 
