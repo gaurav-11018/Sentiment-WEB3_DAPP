@@ -1,15 +1,7 @@
-# Basic Sample Hardhat Project
+SENTIMENT
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
+Web3 Dapp which allows u to vote if the token goes up or down.
+Vote ur sentiment and let the world know how u feel abt the token.
 
-Try running some of the following tasks:
+//this project is not completed yet...work in progress//
 
-```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-node scripts/sample-script.js
-npx hardhat help
-```
