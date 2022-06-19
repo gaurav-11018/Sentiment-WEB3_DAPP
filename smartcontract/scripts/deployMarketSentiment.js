@@ -2,12 +2,14 @@ const hre = require("hardhat");
 
 async function main() {
   // We get the contract to deploy
-  const Greeter = await hre.ethers.getContractFactory("Greeter");
-  const greeter = await Greeter.deploy("Hello, Hardhat!");
+  const MarketSentiment = await hre.ethers.getContractFactory(
+    "MarketSentiment"
+  );
+  const marketsentiment = await MarketSentiment.deploy();
 
-  await greeter.deployed();
+  await marketsentiment.deployed();
 
-  console.log("Greeter deployed to:", greeter.address);
+  console.log("MarketSentiment deployed to:", marketsentiment.address);
 }
 
 main()
