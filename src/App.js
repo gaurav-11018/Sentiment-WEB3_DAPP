@@ -11,7 +11,7 @@ const App = () => {
   const [eth, setEth] = useState(90);
   const [link, setLink] = useState(20);
   const [ape, setApe] = useState(45);
-  const [modalPrice, setModalPrice] = useState;
+  const [modalPrice, setModalPrice] = useState();
   const Web3Api = useMoralisWeb3Api();
   const [visible, setVisible] = useState(false);
   const [modalToken, setModalToken] = useState();
