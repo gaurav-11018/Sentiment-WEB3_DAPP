@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./Coin.css";
 import { Button } from "web3uikit";
+import { useWeb3ExecuteFunction, useMoralis } from "react-moralis";
 
 function Coin({ perc, setPerc, token, setModalToken, setVisible }) {
   const [color, setColor] = useState();
+  const contractProcessor = useWeb3ExecuteFunction();
+  const { isAuthenticated } = useMoralis();
 
   useEffect(() => {
     if (perc < 50) {
@@ -12,6 +15,39 @@ function Coin({ perc, setPerc, token, setModalToken, setVisible }) {
       setColor("green");
     }
   }, [perc]);
+
+  async function vote(upDown) {
+    let options = {
+      contractAddress: "0x0826de00E4D4CC7cDc88523Db2f3286900985a90",
+      functionName: "vote",
+      abi: [
+        {
+          inputs: [
+            { internalType: "string", name: "_ticker", type: "string" },
+            { internalType: "bool", name: "_vote", type: "bool" },
+          ],
+          name: "vote",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+      ],
+      params: {
+        _ticker: token,
+        _vote: upDown,
+      },
+    };
+
+    await contractProcessor.fetch({
+      params: options,
+      onSuccess: () => {
+        console.log("vote successful");
+      },
+      onError: (error) => {
+        alert(error.data.message);
+      },
+    });
+  }
 
   return (
     <>
@@ -31,7 +67,11 @@ function Coin({ perc, setPerc, token, setModalToken, setVisible }) {
         <div className="votes">
           <Button
             onClick={() => {
-              setPerc(perc + 1);
+              if (isAuthenticated) {
+                vote(true);
+              } else {
+                alert("Authenticate to Vote");
+              }
             }}
             text="Up"
             theme="primary"
@@ -39,7 +79,11 @@ function Coin({ perc, setPerc, token, setModalToken, setVisible }) {
           />
           <Button
             onClick={() => {
-              setPerc(perc - 1);
+              if (isAuthenticated) {
+                vote(true);
+              } else {
+                alert("Authenticate to Vote");
+              }
             }}
             text="Down"
             theme="colored"
