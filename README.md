@@ -6,8 +6,14 @@ Web3 Dapp which allows u to vote if the token goes up or down. Vote ur sentiment
 Tools used:
 
 *Moralis(backend)
+
+
 *react(frontend)
+
+
 *solidity(smartcontracts)
+
+
 *Polygonscan
 
 
@@ -24,11 +30,15 @@ Connecting to web3 wallet.
 2.
 ![Screenshot (114)](https://user-images.githubusercontent.com/79459872/174687159-1d596064-dc63-4f6a-9cee-f7b2e9a67035.png)
 A basic info about the token.
+
+
 Live update about its recent price in USD.
 
 3.
 ![Screenshot (117)](https://user-images.githubusercontent.com/79459872/174686800-65ab9f32-29a2-4a98-a60f-855d9d4cdf35.png)
 The final look of the webpage.
+
+
 cool wavy representation of the votes.
 
 
