@@ -11,10 +11,25 @@ const App = () => {
   const [eth, setEth] = useState(90);
   const [link, setLink] = useState(20);
   const [ape, setApe] = useState(45);
-  //  const [modalPrice, setModalPrice] = useState;
-  //  const Web3Api = useMoralisWeb3Api();
+  const [modalPrice, setModalPrice] = useState;
+  const Web3Api = useMoralisWeb3Api();
   const [visible, setVisible] = useState(false);
   const [modalToken, setModalToken] = useState();
+
+  useEffect(() => {
+    async function fetchTokenPrice() {
+      const options = {
+        address:
+          abouts[abouts.findIndex((x) => x.token === modalToken)].address,
+      };
+      const price = await Web3Api.token.getTokenPrice(options);
+      setModalPrice(price.usdPrice.toFixed(2));
+    }
+
+    if (modalToken) {
+      fetchTokenPrice();
+    }
+  }, [modalToken]);
 
   return (
     <>
@@ -65,6 +80,11 @@ const App = () => {
         hasFooter={false}
         title={modalToken}
       >
+        <div>
+          <span style={{ color: "white" }}>{"Price: "}</span>
+          {modalPrice}$
+        </div>
+
         <div>
           <span style={{ color: "white" }}>{"About"}</span>
         </div>
